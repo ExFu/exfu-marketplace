@@ -37,16 +37,33 @@ Each plugin lives in a subdirectory of its own repo, so each entry uses a
 source — Claude Code sparsely clones only that subdirectory when a user installs
 the plugin.
 
-Versions are pinned to each plugin's `plugin.json`. To publish updates: bump the
-version in the source plugin, push it to its repo, and (optionally) update the
-matching `version` here so the catalogue stays accurate.
+No source pins a `ref` or `sha`, so each entry tracks its repo's default branch.
+The catalogue therefore needs no edit when a plugin changes — only when the set
+of plugins, their names, or their subdirectory paths change.
+
+### Versions live in the source plugin, not here
+
+Entries here deliberately carry no `version` field. Claude Code resolves a
+plugin's version from the first of: `plugin.json` → the marketplace entry → the
+git commit SHA, and it uses the `plugin.json` value
+[without warning](https://code.claude.com/docs/en/plugin-marketplaces#version-resolution-and-release-channels)
+when both are set. A `version` here would be inert, and would silently drift
+from the real one.
+
+To publish an update: bump `version` in the source plugin's `plugin.json` and
+push. Users pick it up on their next `/plugin marketplace update` (or the
+background auto-update) followed by `/plugin update`.
+
+**If you push a plugin change without bumping its `plugin.json` version, nobody
+receives it.** Claude Code sees an unchanged version and keeps the cached copy
+indefinitely.
 
 ### Maintaining an entry
 
 When you add, rename, or remove a plugin:
 
 1. Edit `.claude-plugin/marketplace.json`.
-2. Keep `name`, `version`, and the `source.path` in sync with the source repo.
+2. Keep `name` and `source.path` in sync with the source repo.
 3. Commit and push — users pick up changes on their next `/plugin marketplace update`.
 
 To rename or remove a plugin without breaking existing installs, add a top-level

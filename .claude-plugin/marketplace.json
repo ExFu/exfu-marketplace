@@ -15,7 +15,6 @@
         "path": "plugins/solo"
       },
       "description": "ExFu: your Agent Library. Claude as a real working collaborator, with Agent Librarians keeping your stuff organised so you can find it when you need it. Solo edition for individuals.",
-      "version": "0.7.0",
       "author": {
         "name": "Alastair Brayne",
         "email": "al@exfu.ai"
@@ -42,7 +41,6 @@
         "path": "plugins/team"
       },
       "description": "ExFu: join your team's shared Agent Library and build your personal layer on top. Joiner edition.",
-      "version": "0.7.0",
       "author": {
         "name": "Alastair Brayne",
         "email": "al@exfu.ai"
@@ -69,7 +67,6 @@
         "path": "plugins/team-admin"
       },
       "description": "ExFu: library-champion edition. Provision your team's shared Agent Library, author shared skills, brief IT, onboard members.",
-      "version": "0.7.0",
       "author": {
         "name": "Alastair Brayne",
         "email": "al@exfu.ai"
@@ -97,7 +94,6 @@
         "path": "plugins/exfu-agent-planning-and-delegating"
       },
       "description": "The ExFu approach: tiered planning methodology, grounded multi-model delegation to subscription-billed CLI agents (Codex via PAL clink), and schema-validated handoff contracts. Pairs optionally with agent-plan-visualiser for event capture.",
-      "version": "0.3.0",
       "author": {
         "name": "Alastair Brayne"
       },
@@ -122,7 +118,6 @@
         "path": "agent-plan-visualiser"
       },
       "description": "Event-sourced planning methodology with git-history extraction and projection. Walks a project's git history, extracts structured events against a defined ontology, and provides projections (audits, diagrams, status reports) over the resulting event log.",
-      "version": "0.7.0",
       "author": {
         "name": "Alastair Brayne"
       },
