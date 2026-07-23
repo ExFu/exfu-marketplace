@@ -8,7 +8,7 @@ points at them.
 ## Add the marketplace
 
 ```
-/plugin marketplace add whaleybear/exfu-marketplace
+/plugin marketplace add ExFu/claude-marketplace
 ```
 
 Then install any plugin by name:
@@ -23,11 +23,11 @@ Refresh the catalogue later with `/plugin marketplace update exfu`.
 
 | Plugin | What it is | Source repo |
 | --- | --- | --- |
-| `exfu-solo` | ExFu Agent Library — solo edition for individuals | [whaleybear/exfu-library](https://github.com/whaleybear/exfu-library) → `plugins/solo` |
-| `exfu-team` | ExFu Agent Library — joiner edition for team members | [whaleybear/exfu-library](https://github.com/whaleybear/exfu-library) → `plugins/team` |
-| `exfu-team-admin` | ExFu Agent Library — library-champion edition | [whaleybear/exfu-library](https://github.com/whaleybear/exfu-library) → `plugins/team-admin` |
-| `exfu-planning` | ExFu planning methodology + grounded multi-model delegation (Codex via clink) | [whaleybear/exfu-planner](https://github.com/whaleybear/exfu-planner) → `plugins/exfu-planning` |
-| `agent-plan-visualiser` | Event-sourced planning: git-history extraction and projections | [whaleybear/agent-plan-visualiser](https://github.com/whaleybear/agent-plan-visualiser) → `agent-plan-visualiser` |
+| `exfu-solo` | ExFu Agent Library — solo edition for individuals | [ExFu/library](https://github.com/ExFu/library) → `plugins/solo` |
+| `exfu-team` | ExFu Agent Library — joiner edition for team members | [ExFu/library](https://github.com/ExFu/library) → `plugins/team` |
+| `exfu-team-admin` | ExFu Agent Library — library-champion edition | [ExFu/library](https://github.com/ExFu/library) → `plugins/team-admin` |
+| `exfu-planning` | ExFu planning methodology + grounded multi-model delegation (Codex via clink) | [ExFu/planning-and-delegating](https://github.com/ExFu/planning-and-delegating) → `plugins/exfu-planning` |
+| `agent-plan-visualiser` | Event-sourced planning: git-history extraction and projections | [ExFu/agent-plan-visualiser](https://github.com/ExFu/agent-plan-visualiser) → `agent-plan-visualiser` |
 
 ## How it works
 
