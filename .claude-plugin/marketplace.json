@@ -1,0 +1,140 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "exfu",
+  "description": "The ExFu marketplace: Alastair Brayne's Claude Code plugins in one place — the Agent Library (solo, team, team-admin), the ExFu planning methodology, and the Agent Plan Visualiser.",
+  "owner": {
+    "name": "Alastair Brayne",
+    "email": "al@exfu.ai"
+  },
+  "plugins": [
+    {
+      "name": "exfu-solo",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/whaleybear/exfu-library.git",
+        "path": "plugins/solo"
+      },
+      "description": "ExFu: your Agent Library. Claude as a real working collaborator, with Agent Librarians keeping your stuff organised so you can find it when you need it. Solo edition for individuals.",
+      "version": "0.6.2",
+      "author": {
+        "name": "Alastair Brayne",
+        "email": "al@exfu.ai"
+      },
+      "homepage": "https://exfu.ai/install",
+      "repository": "https://github.com/whaleybear/exfu-library",
+      "license": "Proprietary",
+      "category": "agent-library",
+      "keywords": [
+        "exfu",
+        "agent-library",
+        "librarians",
+        "substrate",
+        "knowledge-base",
+        "cowork",
+        "personal-claude"
+      ]
+    },
+    {
+      "name": "exfu-team",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/whaleybear/exfu-library.git",
+        "path": "plugins/team"
+      },
+      "description": "ExFu: join your team's shared Agent Library and build your personal layer on top. Joiner edition.",
+      "version": "0.6.2",
+      "author": {
+        "name": "Alastair Brayne",
+        "email": "al@exfu.ai"
+      },
+      "homepage": "https://exfu.ai/install",
+      "repository": "https://github.com/whaleybear/exfu-library",
+      "license": "Proprietary",
+      "category": "agent-library",
+      "keywords": [
+        "exfu",
+        "agent-library",
+        "librarians",
+        "substrate",
+        "knowledge-base",
+        "cowork",
+        "team-claude"
+      ]
+    },
+    {
+      "name": "exfu-team-admin",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/whaleybear/exfu-library.git",
+        "path": "plugins/team-admin"
+      },
+      "description": "ExFu: library-champion edition. Provision your team's shared Agent Library, author shared skills, brief IT, onboard members.",
+      "version": "0.6.2",
+      "author": {
+        "name": "Alastair Brayne",
+        "email": "al@exfu.ai"
+      },
+      "homepage": "https://exfu.ai/install",
+      "repository": "https://github.com/whaleybear/exfu-library",
+      "license": "Proprietary",
+      "category": "agent-library",
+      "keywords": [
+        "exfu",
+        "agent-library",
+        "librarians",
+        "substrate",
+        "knowledge-base",
+        "cowork",
+        "team-claude",
+        "admin"
+      ]
+    },
+    {
+      "name": "exfu-planning",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/whaleybear/exfu-planner.git",
+        "path": "plugins/exfu-planning"
+      },
+      "description": "The ExFu approach: tiered planning methodology, grounded multi-model delegation to subscription-billed CLI agents (Codex via PAL clink), and schema-validated handoff contracts. Pairs optionally with agent-plan-visualiser for event capture.",
+      "version": "0.1.1",
+      "author": {
+        "name": "Alastair Brayne"
+      },
+      "repository": "https://github.com/whaleybear/exfu-planner",
+      "license": "MIT",
+      "category": "planning",
+      "keywords": [
+        "planning",
+        "delegation",
+        "multi-model",
+        "codex",
+        "methodology",
+        "orchestration"
+      ]
+    },
+    {
+      "name": "agent-plan-visualiser",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/whaleybear/agent-plan-visualiser.git",
+        "path": "agent-plan-visualiser"
+      },
+      "description": "Event-sourced planning methodology with git-history extraction and projection. Walks a project's git history, extracts structured events against a defined ontology, and provides projections (audits, diagrams, status reports) over the resulting event log.",
+      "version": "0.6.3",
+      "author": {
+        "name": "Alastair Brayne"
+      },
+      "repository": "https://github.com/whaleybear/agent-plan-visualiser",
+      "category": "planning",
+      "keywords": [
+        "planning",
+        "event-sourcing",
+        "git",
+        "audit",
+        "methodology",
+        "claude-code"
+      ]
+    }
+  ]
+}
