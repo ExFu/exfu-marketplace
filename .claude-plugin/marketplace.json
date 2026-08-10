@@ -98,7 +98,7 @@
         "name": "Alastair Brayne"
       },
       "repository": "https://github.com/ExFu/agent-planning-and-delegating",
-      "license": "MIT",
+      "license": "Proprietary",
       "category": "planning",
       "keywords": [
         "planning",
@@ -122,6 +122,7 @@
         "name": "Alastair Brayne"
       },
       "repository": "https://github.com/ExFu/agent-plan-visualiser",
+      "license": "Proprietary",
       "category": "planning",
       "keywords": [
         "planning",
