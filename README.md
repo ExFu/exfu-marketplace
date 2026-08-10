@@ -8,7 +8,7 @@ points at them.
 ## Add the marketplace
 
 ```
-/plugin marketplace add ExFu/claude-marketplace
+/plugin marketplace add ExFu/exfu-marketplace
 ```
 
 Then install any plugin by name:
