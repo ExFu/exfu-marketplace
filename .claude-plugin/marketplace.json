@@ -111,7 +111,6 @@
     },
     {
       "name": "exfu-agent-plan-visualiser",
-      "displayName": "ExFu Agent Plan Visualiser",
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/ExFu/agent-plan-visualiser.git",
