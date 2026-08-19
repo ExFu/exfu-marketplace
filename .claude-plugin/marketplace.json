@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "exfu",
-  "description": "The ExFu marketplace: Alastair Brayne's Claude Code plugins in one place — the Agent Library (solo, team, team-admin), the ExFu planning methodology, and the Agent Plan Visualiser.",
+  "description": "The ExFu marketplace: Alastair Brayne's Claude Code plugins in one place — the Agent Library (solo, team, team-admin), the ExFu planning methodology, the Agent Plan Visualiser, and Humane Agents.",
   "owner": {
     "name": "Alastair Brayne",
     "email": "al@exfu.ai"
@@ -107,6 +107,29 @@
         "codex",
         "methodology",
         "orchestration"
+      ]
+    },
+    {
+      "name": "exfu-humane-agents",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/ExFu/humane-agents.git",
+        "path": "plugins/exfu-humane-agents"
+      },
+      "description": "Conventions for the human–agent interface: skills that make agent output serve human cognition — time-poor readers, jargon-blind readers, ADHD-friendly registers. First convention: dual-audience reporting (a rich agent report plus a short, plain human report).",
+      "author": {
+        "name": "Alastair Brayne"
+      },
+      "repository": "https://github.com/ExFu/humane-agents",
+      "license": "Proprietary",
+      "category": "communication",
+      "keywords": [
+        "reporting",
+        "human-interface",
+        "communication",
+        "accessibility",
+        "conventions",
+        "readability"
       ]
     },
     {

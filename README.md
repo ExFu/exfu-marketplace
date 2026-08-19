@@ -27,6 +27,7 @@ Refresh the catalogue later with `/plugin marketplace update exfu`.
 | `exfu-agent-library-team` | ExFu Agent Library — joiner edition for team members | [ExFu/agent-library](https://github.com/ExFu/agent-library) → `plugins/team` |
 | `exfu-agent-library-team-admin` | ExFu Agent Library — library-champion edition | [ExFu/agent-library](https://github.com/ExFu/agent-library) → `plugins/team-admin` |
 | `exfu-agent-planning-and-delegating` | ExFu planning methodology + grounded multi-model delegation (Codex via clink) | [ExFu/agent-planning-and-delegating](https://github.com/ExFu/agent-planning-and-delegating) → `plugins/exfu-agent-planning-and-delegating` |
+| `exfu-humane-agents` | Humane agent conventions — dual-audience reporting first | [ExFu/humane-agents](https://github.com/ExFu/humane-agents) → `plugins/exfu-humane-agents` |
 | `exfu-agent-plan-visualiser` | Event-sourced planning: git-history extraction and projections | [ExFu/agent-plan-visualiser](https://github.com/ExFu/agent-plan-visualiser) → `agent-plan-visualiser` |
 
 ## How it works
