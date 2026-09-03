@@ -3,7 +3,7 @@
   "name": "exfu-marketplace",
   "description": "The ExFu marketplace: Alastair Brayne's Claude Code plugins in one place — the Agent Library (solo, team, team-admin), the ExFu planning methodology, the Agent Plan Visualiser, and Humane Agents.",
   "owner": {
-    "name": "Alastair Brayne",
+    "name": "exfu.ai",
     "email": "al@exfu.ai"
   },
   "plugins": [
@@ -18,7 +18,7 @@
       },
       "description": "ExFu: your Agent Library. Claude as a real working collaborator, with Agent Librarians keeping your stuff organised so you can find it when you need it. Solo edition for individuals.",
       "author": {
-        "name": "Alastair Brayne",
+        "name": "exfu.ai",
         "email": "al@exfu.ai"
       },
       "homepage": "https://exfu.ai/install",
@@ -46,7 +46,7 @@
       },
       "description": "ExFu: join your team's shared Agent Library and build your personal layer on top. Joiner edition.",
       "author": {
-        "name": "Alastair Brayne",
+        "name": "exfu.ai",
         "email": "al@exfu.ai"
       },
       "homepage": "https://exfu.ai/install",
@@ -74,7 +74,7 @@
       },
       "description": "ExFu: library-champion edition. Provision your team's shared Agent Library, author shared skills, brief IT, onboard members.",
       "author": {
-        "name": "Alastair Brayne",
+        "name": "exfu.ai",
         "email": "al@exfu.ai"
       },
       "homepage": "https://exfu.ai/install",
@@ -103,7 +103,7 @@
       },
       "description": "The ExFu approach: tiered planning methodology, grounded multi-model delegation to subscription-billed CLI agents (Codex via PAL clink), and schema-validated handoff contracts. Pairs optionally with agent-plan-visualiser for event capture.",
       "author": {
-        "name": "Alastair Brayne"
+        "name": "exfu.ai"
       },
       "repository": "https://github.com/ExFu/agent-planning-and-delegating",
       "license": "Proprietary",
@@ -128,7 +128,7 @@
       },
       "description": "Conventions for the human–agent interface: skills that make agent output serve human cognition — time-poor readers, jargon-blind readers, ADHD-friendly registers. First convention: dual-audience reporting (a rich agent report plus a short, plain human report).",
       "author": {
-        "name": "Alastair Brayne"
+        "name": "exfu.ai"
       },
       "repository": "https://github.com/ExFu/humane-agents",
       "homepage": "https://github.com/ExFu/humane-agents",
@@ -154,7 +154,7 @@
       },
       "description": "Event-sourced planning methodology with git-history extraction and projection. Walks a project's git history, extracts structured events against a defined ontology, and provides projections (audits, diagrams, status reports) over the resulting event log.",
       "author": {
-        "name": "Alastair Brayne"
+        "name": "exfu.ai"
       },
       "repository": "https://github.com/ExFu/agent-plan-visualiser",
       "license": "Proprietary",
