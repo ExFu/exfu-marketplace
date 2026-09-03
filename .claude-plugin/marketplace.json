@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "exfu",
+  "name": "exfu-marketplace",
   "description": "The ExFu marketplace: Alastair Brayne's Claude Code plugins in one place — the Agent Library (solo, team, team-admin), the ExFu planning methodology, the Agent Plan Visualiser, and Humane Agents.",
   "owner": {
     "name": "Alastair Brayne",
@@ -12,7 +12,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/ExFu/agent-library.git",
-        "path": "plugins/solo"
+        "path": "plugins/solo",
+        "ref": "main",
+        "sha": "719aef19c951555b4c35d4710b0f6294d4c56eab"
       },
       "description": "ExFu: your Agent Library. Claude as a real working collaborator, with Agent Librarians keeping your stuff organised so you can find it when you need it. Solo edition for individuals.",
       "author": {
@@ -38,7 +40,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/ExFu/agent-library.git",
-        "path": "plugins/team"
+        "path": "plugins/team",
+        "ref": "main",
+        "sha": "719aef19c951555b4c35d4710b0f6294d4c56eab"
       },
       "description": "ExFu: join your team's shared Agent Library and build your personal layer on top. Joiner edition.",
       "author": {
@@ -64,7 +68,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/ExFu/agent-library.git",
-        "path": "plugins/team-admin"
+        "path": "plugins/team-admin",
+        "ref": "main",
+        "sha": "719aef19c951555b4c35d4710b0f6294d4c56eab"
       },
       "description": "ExFu: library-champion edition. Provision your team's shared Agent Library, author shared skills, brief IT, onboard members.",
       "author": {
@@ -91,7 +97,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/ExFu/agent-planning-and-delegating.git",
-        "path": "plugins/exfu-agent-planning-and-delegating"
+        "path": "plugins/exfu-agent-planning-and-delegating",
+        "ref": "main",
+        "sha": "54d37f79f8420b749f808143745926972c8e9042"
       },
       "description": "The ExFu approach: tiered planning methodology, grounded multi-model delegation to subscription-billed CLI agents (Codex via PAL clink), and schema-validated handoff contracts. Pairs optionally with agent-plan-visualiser for event capture.",
       "author": {
@@ -114,7 +122,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/ExFu/humane-agents.git",
-        "path": "plugins/exfu-humane-agents"
+        "path": "plugins/exfu-humane-agents",
+        "ref": "main",
+        "sha": "06862c90de5c0b1051da3d376a871cb2e3a77d27"
       },
       "description": "Conventions for the human–agent interface: skills that make agent output serve human cognition — time-poor readers, jargon-blind readers, ADHD-friendly registers. First convention: dual-audience reporting (a rich agent report plus a short, plain human report).",
       "author": {
@@ -138,7 +148,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/ExFu/agent-plan-visualiser.git",
-        "path": "plugins/agent-plan-visualiser"
+        "path": "plugins/agent-plan-visualiser",
+        "ref": "main",
+        "sha": "e96ccc2e8b0c2c706a57b53cdb0fab082e2981f7"
       },
       "description": "Event-sourced planning methodology with git-history extraction and projection. Walks a project's git history, extracts structured events against a defined ontology, and provides projections (audits, diagrams, status reports) over the resulting event log.",
       "author": {
