@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Install every plugin from this checkout into a throwaway HOME, exactly as a
+# new user would, and assert each lands at its pinned commit and version.
+# Requires the claude CLI. Exit 1 on any mismatch.
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+MANIFEST="$ROOT/.claude-plugin/marketplace.json"
+command -v claude >/dev/null || { echo "claude CLI not on PATH" >&2; exit 2; }
+
+TMP="$(mktemp -d -t exfu-smoke)"
+trap 'rm -rf "$TMP"' EXIT
+export HOME="$TMP/home"; mkdir -p "$HOME"
+
+MKT="$(python3 -c "import json;print(json.load(open('$MANIFEST'))['name'])")"
+echo "marketplace: $MKT  from $ROOT  (HOME=$HOME)"
+claude plugin marketplace add "$ROOT"
+
+status=0
+while read -r name sha; do
+  echo "--- $name"
+  if ! claude plugin install "$name@$MKT"; then echo "FAIL install $name"; status=1; continue; fi
+  read -r got_ver got_sha < <(python3 - "$HOME/.claude/plugins/installed_plugins.json" "$name@$MKT" <<'PY'
+import json,sys
+d=json.load(open(sys.argv[1])); recs=d.get('plugins',d).get(sys.argv[2],[])
+r=recs[0] if recs else {}
+print(r.get('version','-'), r.get('gitCommitSha','-'))
+PY
+)
+  if [ "$got_sha" != "$sha" ]; then echo "FAIL $name installed $got_sha, pinned $sha"; status=1
+  else echo "ok   $name $got_ver @ ${got_sha:0:10}"; fi
+done < <(python3 -c "
+import json
+for e in json.load(open('$MANIFEST'))['plugins']: print(e['name'], e['source']['sha'])")
+
+[ $status -eq 0 ] && echo "smoke test passed" || echo "smoke test FAILED"
+exit $status

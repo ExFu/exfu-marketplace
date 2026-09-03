@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+"""Release a plugin through the marketplace: move its pin to a commit whose
+plugin.json version is new, then commit.
+
+usage: scripts/release <plugin> [<ref>] [--no-commit] [--allow-same-version]
+
+<ref> is a branch, tag, or full sha in the plugin's repo. Defaults to the
+entry's "ref" (normally main).
+"""
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _marketplace import (MANIFEST, ROOT, PinnedTree, claude_available, die,
+                          entry, load_manifest, resolve_ref, run, save_manifest)
+
+
+def main(argv: list[str]) -> int:
+    flags = {a for a in argv if a.startswith("--")}
+    args = [a for a in argv if not a.startswith("--")]
+    if not args or flags - {"--no-commit", "--allow-same-version"}:
+        print(__doc__.strip(), file=sys.stderr)
+        return 2
+    name = args[0]
+    d = load_manifest()
+    e = entry(d, name)
+    src = e["source"]
+    if src.get("source") != "git-subdir":
+        die(f"{name} is not a git-subdir source; this script only handles those")
+    url, subdir = src["url"], src["path"]
+    ref = args[1] if len(args) > 1 else src.get("ref", "main")
+    old_sha = src.get("sha")
+
+    new_sha = resolve_ref(url, ref)
+    print(f"{name}: {ref} -> {new_sha[:10]}")
+    if new_sha == old_sha and "--allow-same-version" not in flags:
+        die(f"{name} is already pinned to {new_sha[:10]}; nothing to release")
+
+    new_tree = PinnedTree(url, new_sha)
+    pj = new_tree.plugin_json(subdir)
+    new_tree.close()
+    if pj.get("name") != name:
+        die(f"plugin.json at {new_sha[:10]} is named {pj.get('name')!r}, entry is {name!r}")
+    new_ver = pj.get("version")
+    if not new_ver:
+        die(f"plugin.json at {new_sha[:10]} has no version; the CLI caches by version, so every release needs one")
+
+    old_ver = None
+    if old_sha:
+        old_tree = PinnedTree(url, old_sha)
+        old_ver = old_tree.plugin_json(subdir).get("version")
+        old_tree.close()
+    if old_ver == new_ver and "--allow-same-version" not in flags:
+        die(f"{name} version is still {new_ver} at {new_sha[:10]} (pinned {old_sha[:10]} is {old_ver}).\n"
+            f"CLI users cache by version and would not receive this. Bump version in "
+            f"{subdir}/.claude-plugin/plugin.json and re-run, or pass --allow-same-version if "
+            f"you really mean it.")
+
+    src["sha"] = new_sha
+    save_manifest(d)
+    print(f"{name}: {old_ver or '(unpinned)'} -> {new_ver}  pin {old_sha[:10] if old_sha else '-'} -> {new_sha[:10]}")
+
+    if claude_available():
+        out = run(["claude", "plugin", "validate", str(MANIFEST), "--strict"], cwd=ROOT, check=False)
+        if "Validation passed" not in out:
+            die(f"claude plugin validate failed:\n{out}")
+
+    if "--no-commit" in flags:
+        print("manifest updated; not committed (--no-commit)")
+        return 0
+    run(["git", "add", str(MANIFEST.relative_to(ROOT))], cwd=ROOT)
+    msg = f"release: {name} {new_ver} ({new_sha[:10]})"
+    run(["git", "commit", "-q", "-m", msg], cwd=ROOT)
+    print(f"committed: {msg}\npush to publish.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

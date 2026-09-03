@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+"""Validate the marketplace the way a stranger's install will exercise it.
+
+Checks the manifest, then for every entry fetches the pinned commit and checks
+the plugin as Anthropic's server does before accepting it. Exit 1 on any
+failure. Run in CI on every push.
+"""
+from __future__ import annotations
+
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _marketplace import (MANIFEST, ROOT, SHA_RE, PinnedTree, claude_available,
+                          load_manifest, run)
+
+failures: list[str] = []
+
+
+def fail(msg: str) -> None:
+    failures.append(msg)
+    print(f"  FAIL {msg}")
+
+
+def ok(msg: str) -> None:
+    print(f"  ok   {msg}")
+
+
+def repo_slug() -> str | None:
+    try:
+        url = run(["git", "remote", "get-url", "origin"], cwd=ROOT).strip()
+    except RuntimeError:
+        return None
+    m = re.search(r"/([^/]+?)(?:\.git)?/?$", url)
+    return m.group(1) if m else None
+
+
+def check_manifest(d: dict) -> None:
+    print("manifest")
+    name = d.get("name")
+    slug = repo_slug()
+    if slug and name != slug:
+        fail(f"manifest name {name!r} != repo slug {slug!r}. Desktop names the account "
+             f"marketplace after the repo; the CLI uses this field. They must match.")
+    else:
+        ok(f"name {name!r} matches repo slug")
+    names = [e.get("name") for e in d.get("plugins", [])]
+    if len(names) != len(set(names)):
+        fail("duplicate plugin names")
+    for e in d.get("plugins", []):
+        n, s = e.get("name"), e.get("source", {})
+        if "version" in e:
+            fail(f"{n}: entry sets version; plugin.json overrides it silently, remove it")
+        if s.get("source") != "git-subdir":
+            fail(f"{n}: source is {s.get('source')!r}; only git-subdir is supported by these checks")
+            continue
+        sha = s.get("sha")
+        if not sha or not SHA_RE.match(sha):
+            fail(f"{n}: source.sha missing or not a 40-char sha; every entry must be pinned")
+    if claude_available():
+        out = run(["claude", "plugin", "validate", str(MANIFEST), "--strict"], cwd=ROOT, check=False)
+        (ok if "Validation passed" in out else fail)("claude plugin validate --strict: " + out.strip().splitlines()[-1])
+    else:
+        print("  skip claude CLI not on PATH; schema check skipped")
+
+
+def check_plugin(e: dict) -> None:
+    n, s = e["name"], e["source"]
+    url, subdir, sha = s["url"], s["path"], s["sha"]
+    print(f"{n}  {url.rsplit('/',1)[-1]} {subdir} @ {sha[:10]}")
+    tree = PinnedTree(url, sha)
+    try:
+        # Reachability of the pin was proven by the fetch. Now the plugin itself.
+        pj = tree.plugin_json(subdir)
+        if pj.get("name") != n:
+            fail(f"plugin.json name {pj.get('name')!r} != entry name {n!r}")
+        else:
+            ok(f"plugin.json name matches")
+        if not pj.get("version"):
+            fail("plugin.json has no version; the CLI caches by version")
+        else:
+            ok(f"version {pj['version']}")
+
+        top = tree.ls(subdir)
+        if "bin/" in top:
+            fail("top-level bin/ directory: Anthropic's server rejects the plugin "
+                 "(executables are added to PATH but not shown on the admin approval "
+                 "surface). Move launchers under scripts/ and expose them via commands, "
+                 "hooks, or mcpServers.")
+        else:
+            ok("no top-level bin/")
+
+        cmds = {Path(x).stem for x in tree.ls(f"{subdir}/commands") if x.endswith(".md")}
+        skills = {x.rstrip("/") for x in tree.ls(f"{subdir}/skills") if x.endswith("/")}
+        clash = sorted(cmds & skills)
+        if clash:
+            fail(f"command/skill name collision: {', '.join(clash)}. Claude Code skips the "
+                 f"command and warns on every load; delete one side.")
+        else:
+            ok("no command/skill name collisions")
+
+        # Informational: how far the pin trails the branch.
+        ref = s.get("ref", "main")
+        try:
+            head = run(["git", "ls-remote", url, f"refs/heads/{ref}"]).split()[0]
+            print(f"  info {ref} is at {head[:10]}" + ("" if head == sha else " (pin trails it; fine if intentional)"))
+        except Exception:
+            pass
+
+        if claude_available():
+            # Materialise the subdir and run the official validator on it.
+            out_dir = tree.dir / "plugin"
+            out_dir.mkdir()
+            tar = subprocess.run(["git", "archive", "--format=tar", f"FETCH_HEAD:{subdir}"],
+                                 cwd=tree.dir, capture_output=True)
+            subprocess.run(["tar", "-x", "-C", str(out_dir)], input=tar.stdout, check=True)
+            out = run(["claude", "plugin", "validate", str(out_dir), "--strict"], cwd=ROOT, check=False)
+            last = out.strip().splitlines()[-1] if out.strip() else "(no output)"
+            (ok if "Validation passed" in out else fail)("claude plugin validate --strict: " + last)
+    finally:
+        tree.close()
+
+
+def main() -> int:
+    d = load_manifest()
+    check_manifest(d)
+    for e in d.get("plugins", []):
+        if e.get("source", {}).get("source") == "git-subdir" and SHA_RE.match(e["source"].get("sha", "")):
+            check_plugin(e)
+    print()
+    if failures:
+        print(f"{len(failures)} failure(s)")
+        return 1
+    print("all checks passed")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
