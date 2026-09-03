@@ -124,7 +124,7 @@
         "url": "https://github.com/ExFu/humane-agents.git",
         "path": "plugins/exfu-humane-agents",
         "ref": "main",
-        "sha": "06862c90de5c0b1051da3d376a871cb2e3a77d27"
+        "sha": "b21a8d9bb2b8c1d77a5ba88410a2e31490974db9"
       },
       "description": "Conventions for the human–agent interface: skills that make agent output serve human cognition — time-poor readers, jargon-blind readers, ADHD-friendly registers. First convention: dual-audience reporting (a rich agent report plus a short, plain human report).",
       "author": {
