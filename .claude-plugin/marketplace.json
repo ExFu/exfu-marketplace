@@ -42,7 +42,7 @@
         "url": "https://github.com/ExFu/agent-library.git",
         "path": "plugins/team",
         "ref": "main",
-        "sha": "719aef19c951555b4c35d4710b0f6294d4c56eab"
+        "sha": "4cdbb258a9ea10a70b6a9b66e60c3bf7b0eebaef"
       },
       "description": "ExFu: join your team's shared Agent Library and build your personal layer on top. Joiner edition.",
       "author": {
