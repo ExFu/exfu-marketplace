@@ -99,7 +99,7 @@
         "url": "https://github.com/ExFu/agent-planning-and-delegating.git",
         "path": "plugins/exfu-agent-planning-and-delegating",
         "ref": "main",
-        "sha": "54d37f79f8420b749f808143745926972c8e9042"
+        "sha": "d4596be5f11df3d0aaf575b8794e7e548f1225df"
       },
       "description": "The ExFu approach: tiered planning methodology, grounded multi-model delegation to subscription-billed CLI agents (Codex via PAL clink), and schema-validated handoff contracts. Pairs optionally with agent-plan-visualiser for event capture.",
       "author": {
