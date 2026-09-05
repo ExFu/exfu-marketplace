@@ -14,7 +14,7 @@
         "url": "https://github.com/ExFu/agent-library.git",
         "path": "plugins/solo",
         "ref": "main",
-        "sha": "4cdbb258a9ea10a70b6a9b66e60c3bf7b0eebaef"
+        "sha": "12c82e5a8f32562961554124648c163d378b2779"
       },
       "description": "ExFu: your Agent Library. Claude as a real working collaborator, with Agent Librarians keeping your stuff organised so you can find it when you need it. Solo edition for individuals.",
       "author": {
