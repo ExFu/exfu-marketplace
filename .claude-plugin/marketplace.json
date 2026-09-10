@@ -150,7 +150,7 @@
         "url": "https://github.com/ExFu/agent-plan-visualiser.git",
         "path": "plugins/agent-plan-visualiser",
         "ref": "main",
-        "sha": "3cafca6915b3c3217a8ca65f583dc2f15a7f759f"
+        "sha": "d16fd639824f0e887c605a3516c6477cb25226af"
       },
       "description": "Event-sourced planning methodology with git-history extraction and projection. Walks a project's git history, extracts structured events against a defined ontology, and provides projections (audits, diagrams, status reports) over the resulting event log.",
       "author": {
