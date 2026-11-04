@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "exfu-marketplace",
-  "description": "The ExFu marketplace: Alastair Brayne's Claude Code plugins in one place — the Agent Library (solo, team, team-admin), the ExFu planning methodology, the Agent Plan Visualiser, and Humane Agents, and the Multiaccount Google workspace MCP server (beta, devs only).",
+  "description": "The ExFu marketplace: Alastair Brayne's Claude Code plugins in one place — the Agent Library (solo, team, team-admin), the ExFu planning methodology, the Agent Plan Visualiser, Humane Agents, the Multiaccount Google workspace MCP server (beta, devs only), and Agent Messaging between Claude and Codex.",
   "owner": {
     "name": "exfu.ai",
     "email": "al@exfu.ai"
@@ -195,6 +195,33 @@
         "mcp",
         "beta",
         "devs-only"
+      ]
+    },
+    {
+      "name": "exfu-agent-messaging",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/ExFu/agent-messaging.git",
+        "path": "plugins/exfu-agent-messaging",
+        "ref": "main",
+        "sha": "a1da4524a59e1fcc8b8edb67890917c67ea9f810"
+      },
+      "description": "A shared mailbox on your Mac so Claude and Codex sessions can message each other: channels, inboxes and per-recipient marks, with one router session that nudges whoever has new mail in Claude and in Codex.",
+      "author": {
+        "name": "exfu.ai",
+        "email": "al@exfu.ai"
+      },
+      "homepage": "https://github.com/ExFu/agent-messaging",
+      "repository": "https://github.com/ExFu/agent-messaging",
+      "license": "Proprietary",
+      "category": "coordination",
+      "keywords": [
+        "exfu",
+        "messaging",
+        "codex",
+        "multi-agent",
+        "mailbox",
+        "cross-session"
       ]
     }
   ]
