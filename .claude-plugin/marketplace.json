@@ -93,27 +93,50 @@
       ]
     },
     {
-      "name": "exfu-agent-planning-and-delegating",
+      "name": "exfu-orchestration",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/ExFu/agent-planning-and-delegating.git",
-        "path": "plugins/exfu-agent-planning-and-delegating",
+        "url": "https://github.com/ExFu/orchestration.git",
+        "path": "plugins/exfu-orchestration",
         "ref": "main",
-        "sha": "d4596be5f11df3d0aaf575b8794e7e548f1225df"
+        "sha": "07246c7525e6a778c1cd16ae3f23039ae67ba7f9"
       },
-      "description": "The ExFu approach: tiered planning methodology, grounded multi-model delegation to subscription-billed CLI agents (Codex via PAL clink), and schema-validated handoff contracts. Pairs optionally with agent-plan-visualiser for event capture.",
+      "description": "How ExFu agents work together: Claude and Codex as orchestrators and lane workers, with shared session-naming, handover and sign-off rules, the tiered planning methodology, and grounded delegation to subscription-billed CLI agents. Pairs optionally with agent-plan-visualiser and agent-messaging.",
       "author": {
         "name": "exfu.ai"
       },
-      "repository": "https://github.com/ExFu/agent-planning-and-delegating",
+      "repository": "https://github.com/ExFu/orchestration",
       "license": "Proprietary",
       "category": "planning",
       "keywords": [
+        "orchestration",
         "planning",
         "delegation",
+        "handover",
         "multi-model",
         "codex",
-        "methodology",
+        "methodology"
+      ]
+    },
+    {
+      "name": "exfu-agent-planning-and-delegating",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/ExFu/orchestration.git",
+        "path": "plugins/exfu-agent-planning-and-delegating",
+        "ref": "main",
+        "sha": "07246c7525e6a778c1cd16ae3f23039ae67ba7f9"
+      },
+      "description": "Renamed to exfu-orchestration. This entry only tells you how to switch; install exfu-orchestration@exfu-marketplace instead.",
+      "author": {
+        "name": "exfu.ai"
+      },
+      "repository": "https://github.com/ExFu/orchestration",
+      "license": "Proprietary",
+      "category": "planning",
+      "keywords": [
+        "deprecated",
+        "renamed",
         "orchestration"
       ]
     },
