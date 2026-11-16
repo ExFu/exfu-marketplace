@@ -204,7 +204,7 @@
         "url": "https://github.com/ExFu/agent-messaging.git",
         "path": "plugins/exfu-agent-messaging",
         "ref": "main",
-        "sha": "a1da4524a59e1fcc8b8edb67890917c67ea9f810"
+        "sha": "a0e308c786a5bb4dbac6af0073d606b695108a6e"
       },
       "description": "A shared mailbox on your Mac so Claude and Codex sessions can message each other: channels, inboxes and per-recipient marks, with one router session that nudges whoever has new mail in Claude and in Codex.",
       "author": {
