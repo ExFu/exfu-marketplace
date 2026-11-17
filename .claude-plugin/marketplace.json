@@ -198,7 +198,7 @@
         "url": "https://github.com/ExFu/multiaccount.git",
         "path": "plugins/exfu-multiaccount",
         "ref": "main",
-        "sha": "05ad778d944c3b94b6967b190d888531f303ccd0"
+        "sha": "f7f1205a0bc7491d163023fd97a85f498259695e"
       },
       "description": "BETA, DEVS ONLY — ExFu multi-account Google workspace MCP server: Gmail (search, read, attachments, drafts), Drive, Docs and Calendar across several Google accounts at once, each routed by an explicit account alias. Local-only; you bring your own Google Cloud OAuth client and run it from Claude Code on your own machine. Tokens never leave your machine.",
       "author": {
